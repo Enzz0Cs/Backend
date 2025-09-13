@@ -74,4 +74,30 @@ export default class CursoDAO {
         }
         return listaCursos;
     }
+
+    async consultarID(id) {
+        id = id || null;
+        const conexao = await connect()
+        const sql = 'SELECT * FROM curso WHERE cur_id = ?'
+        const [registros] = await conexao.query(sql, [id]);
+        await conexao.release();
+
+        let listaCursos = [];
+        for (const registro of registros) {
+            const curso = new Curso(
+                registro.cur_id,
+                registro.cur_nome,
+                registro.cur_inicio,
+                registro.cur_descricao,
+                registro.cur_duracao,
+                registro.cur_preco,
+                registro.cur_vagas,
+                registro.cur_nivel,
+                registro.cur_instrutor);
+
+            listaCursos.push(curso);
+
+        }
+        return listaCursos;
+    }
 }

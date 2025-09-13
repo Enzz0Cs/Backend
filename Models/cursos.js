@@ -21,7 +21,7 @@ export default class Curso {
         this.#vagas = vagas
         this.#nivel = nivel
         this.#instrutor = instrutor
-    }
+    };
 
     get id() {
         return this.#id
@@ -123,22 +123,27 @@ export default class Curso {
     }
 
     async gravar() {
-        const cursoDAO = new CursoDAO()
-        await cursoDAO.gravar(this)
+        const cursoDAO = new CursoDAO();
+        await cursoDAO.gravar(this);
     }
 
     async alterar() {
-        const cursoDAO = new CursoDAO()
-        await cursoDAO.alterar(this)
+        const cursoDAO = new CursoDAO();
+        await cursoDAO.alterar(this);
     }
 
     async excluir() {
-        const cursoDAO = new CursoDAO()
-        await cursoDAO.excluir(this)
+        const cursoDAO = new CursoDAO();
+        await cursoDAO.excluir(this);
     }
 
     async consultar() {
-        const cursoDAO = new CursoDAO()
-        return await cursoDAO.consultar(this.#id)
+        const cursoDAO = new CursoDAO();
+        return await cursoDAO.consultar();
+    }
+
+    async consultarID(id) {
+        const cursoDAO = new CursoDAO();
+        return await cursoDAO.consultarID(id);
     }
 }
